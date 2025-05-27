@@ -25,3 +25,33 @@ Tujuan utama dari proyek ini adalah untuk mengembangkan, melatih, dan mengevalua
 
 ### Solution Statement 
 Proyek ini mengusulkan solusi berbasis machine learning untuk mengatasi tantangan identifikasi dropout mahasiswa. Solusi ini melibatkan pembangunan model klasifikasi menggunakan algoritma seperti Gaussian Naive Bayes, Logistic Regression, dan Random Forest pada dataset historis mahasiswa. Data akan melalui proses preprocessing termasuk encoding dan standarisasi. Kinerja model akan dievaluasi secara komprehensif menggunakan metrik standar seperti accuracy, precision, recall, dan F1-score, serta visualisasi confusion matrix. Hasil evaluasi ini akan digunakan untuk membandingkan kinerja model dan mengidentifikasi model terbaik untuk memprediksi dropout mahasiswa. Solusi ini bertujuan untuk memberikan institusi pendidikan alat prediktif yang berbasis data untuk mengidentifikasi mahasiswa berisiko dropout secara proaktif, memungkinkan intervensi yang tepat waktu dan meningkatkan retensi mahasiswa.
+
+## Data Understanding
+Data Understanding yang mencakup analisis eksploratif data (EDA) dengan penjelasan mengenai kondisi dataset, serta visualisasi yang relevan untuk mendukung insight yang disampaikan:
+1. Memahami Data <br>
+   Memahami data adalah langkah awal yang krusial untuk menganalisis informasi dan kualitas data. Pada bagian ini, kita akan memuat dataset, menjelaskan kondisi dataset, serta melakukan analisis eksploratif untuk mendapatkan wawasan yang lebih dalam.<br>
+a. Memuat Data<br>
+Dataset yang digunakan dalam proyek ini adalah mengenai gaji karyawan berdasarkan  pengalaman kerja. Dataset dapat diakses melalui tautan ini (https://www.kaggle.com/datasets/adilshamim8/predict-students-dropout-and-academic-success/code).<br>
+b.  Kondisi Dataset <br>
+Sebelum melakukan analisis lebih lanjut, penting untuk memahami kondisi dataset. Kita akan memeriksa adanya nilai hilang, duplikasi, dan outlier. <br>
+    - Nilai Hilang: Memeriksa jumlah nilai hilang dalam dataset.
+    - Duplikasi: Memeriksa apakah terdapat baris yang duplikat.
+c.  Analisis Data Eksploratif (EDA) <br>
+Analisis data eksploratif adalah proses untuk menganalisis karakteristik data, menemukan pola, dan memeriksa asumsi.<br>
+d. Insight dari EDA <br>
+Visualisasi awal dan eksplorasi data menggunakan distribusi frekuensi dan heatmap korelasi membantu memahami hubungan antar fitur.<br>
+
+## Data Preparation
+Persiapan data adalah langkah penting untuk mempersiapkan data sebelum membangun model machine learning. Pada bagian ini, kita akan fokus pada beberapa proses utama yang diperlukan untuk memastikan data siap digunakan dalam pemodelan.
+Langkah-langkah yang diambil dalam proses persiapan data sebagai berikut:
+1. Menangani data yang kurang sesuai
+- Menghapus semua baris dari DataFrame data yang memiliki nilai 1 pada kolom target.
+- Membuat kolom baru bernama 'Dropout' di DataFrame data, berdasarkan nilai dari kolom 'target' dengan asumsi :
+  - target == 0 berarti orang tersebut dropout, sehingga Dropout = 1.
+  - target == 1 berarti tidak dropout, sehingga Dropout = 0.
+3. Mengatasi Outlier
+  - Outlier dapat mempengaruhi hasil analisis dan model yang dibangun. Oleh karena itu, kita perlu mengidentifikasi dan menangani outlier dalam dataset. Dalam proyek ini, kita menggunakan metode Z-score untuk mendeteksi outlier. Baris yang memiliki Z-score di atas threshold yang ditentukan akan dihapus dari dataset.
+3. Pembagian Data Latih dan Uji
+  - Setelah menangani missing value dan outlier, langkah selanjutnya adalah membagi dataset menjadi data latih dan data uji. Pembagian ini penting untuk memastikan bahwa model dapat dievaluasi dengan baik. Dalam proyek ini, kita menggunakan 10% dari data sebagai data uji.
+4. Standarisasi Data
+  - Standarisasi data adalah langkah penting untuk memastikan bahwa fitur-fitur dalam dataset memiliki skala yang sama. Hal ini dapat membantu algoritma machine learning dalam proses pelatihan. Kita akan melakukan standarisasi pada fitur numerik menggunakan StandardScaler.
