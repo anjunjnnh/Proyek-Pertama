@@ -23,9 +23,10 @@ Dalam era data saat ini, analisis prediktif menawarkan potensi besar untuk menga
 
 ## Business Understanding 
 Institusi pendidikan tinggi menghadapi tantangan signifikan dalam mempertahankan mahasiswa, yang berdampak pada pendapatan, reputasi, dan efisiensi operasional. Tingkat dropout yang tinggi menunjukkan perlunya pendekatan yang lebih proaktif dalam mengidentifikasi mahasiswa berisiko. Proses identifikasi manual saat ini tidak efisien dan akurat. Proyek ini bertujuan menyediakan model prediktif berbasis machine learning yang dapat diandalkan untuk mengidentifikasi mahasiswa berisiko dropout secara dini, memungkinkan institusi untuk melakukan intervensi tepat waktu, meningkatkan retensi, dan mengoptimalkan penggunaan sumber daya.
+
 ### Problem Statements
 Berdasarkan latar belakang di atas, berikut ini merupakan rincian masalah yang dapat diselesaikan pada proyek ini:
--  Algoritma machine learning apa (misalnya Gaussian Naive Bayes, Logistic Regression, dan Random Forest) yang memberikan kinerja terbaik dalam memprediksi dropout mahasiswa pada dataset yang digunakan?
+-  Algoritma machine learning apa (misalnya Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier) yang memberikan kinerja terbaik dalam memprediksi dropout mahasiswa pada dataset yang digunakan?
 -  Fitur-fitur apa dari dataset yang paling berkorelasi dengan status dropout mahasiswa dan dapat dijadikan indikator risiko dropout?
 -  Bagaimana metrik evaluasi model (seperti accuracy, precision, recall, F1-score, dan confusion matrix) menunjukkan kinerja masing-masing model dalam mengidentifikasi mahasiswa yang berisiko dropout dan yang tidak berisiko dropout?
 
@@ -33,7 +34,7 @@ Berdasarkan latar belakang di atas, berikut ini merupakan rincian masalah yang d
 Tujuan utama dari proyek ini adalah untuk mengembangkan, melatih, dan mengevaluasi beberapa model machine learning yang mampu memprediksi status dropout mahasiswa secara akurat. Proyek ini bertujuan untuk mengidentifikasi algoritma machine learning yang paling efektif dalam memprediksi dropout berdasarkan data yang tersedia, serta memberikan wawasan tentang faktor-faktor kunci yang berkontribusi terhadap risiko dropout.
 
 ### Solution Statement 
-Proyek ini mengusulkan solusi berbasis machine learning untuk mengatasi tantangan identifikasi dropout mahasiswa. Solusi ini melibatkan pembangunan model klasifikasi menggunakan algoritma seperti Gaussian Naive Bayes, Logistic Regression, dan Random Forest pada dataset historis mahasiswa. Data akan melalui proses preprocessing termasuk encoding dan standarisasi. Kinerja model akan dievaluasi secara komprehensif menggunakan metrik standar seperti accuracy, precision, recall, dan F1-score, serta visualisasi confusion matrix. Hasil evaluasi ini akan digunakan untuk membandingkan kinerja model dan mengidentifikasi model terbaik untuk memprediksi dropout mahasiswa. Solusi ini bertujuan untuk memberikan institusi pendidikan alat prediktif yang berbasis data untuk mengidentifikasi mahasiswa berisiko dropout secara proaktif, memungkinkan intervensi yang tepat waktu dan meningkatkan retensi mahasiswa.
+Proyek ini mengusulkan solusi berbasis machine learning untuk mengatasi tantangan identifikasi dropout mahasiswa. Solusi ini melibatkan pembangunan model klasifikasi menggunakan algoritma seperti Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier pada dataset historis mahasiswa. Data akan melalui proses preprocessing termasuk encoding dan standarisasi. Kinerja model akan dievaluasi secara komprehensif menggunakan metrik standar seperti accuracy, precision, recall, dan F1-score, serta visualisasi confusion matrix. Hasil evaluasi ini akan digunakan untuk membandingkan kinerja model dan mengidentifikasi model terbaik untuk memprediksi dropout mahasiswa. Solusi ini bertujuan untuk memberikan institusi pendidikan alat prediktif yang berbasis data untuk mengidentifikasi mahasiswa berisiko dropout secara proaktif, memungkinkan intervensi yang tepat waktu dan meningkatkan retensi mahasiswa.
 
 ## Data Understanding
 
@@ -121,7 +122,8 @@ Tiga algoritma klasifikasi digunakan untuk membangun model prediksi:
    - F1-score
 4. **Visualisasi**: perbandingan metrik antar model, confusion matrix, dll.
 
-## Hasil Evaluasi
+## Evaluation
+1. Hasil Evaluasi
 
 | Model                    | Akurasi | Precision | Recall | F1-Score |
 |--------------------------|---------|-----------|--------|----------|
@@ -129,4 +131,22 @@ Tiga algoritma klasifikasi digunakan untuk membangun model prediksi:
 | Logistic Regression      | 0.91    | 0.91      | 0.91   | 0.91     |
 | Random Forest Classifier | 0.92    | 0.92      | 0.92   | 0.92     |
 
-Random Forest Classifier menunjukkan performa terbaik.
+Dari hasil di atas, dapat dilihat bahwa model Random Forest Classifier memiliki akurasi yang lebih rendah baik pada data latih maupun data uji dibandingkan dengan model Gaussian Naive Bayes dan Logistic Regression. Ini menunjukkan bahwa model Random Forest Classifier lebih baik dalam memprediksi mahasiswa berisiko dropout.
+
+2. Dampak terhadap Business Understanding
+
+Model prediksi dropout yang dibangun membantu institusi pendidikan dalam:
+- Mengidentifikasi siswa berisiko tinggi secara dini
+- Merancang intervensi akademik atau finansial yang tepat
+- Meningkatkan retensi siswa dan efisiensi operasional
+Solusi ini menjawab kebutuhan nyata dalam mengurangi angka dropout dengan pendekatan berbasis data.
+
+## Kesimpulan 
+Secara keseluruhan, proyek ini berhasil membangun model prediktif yang efektif dalam mengidentifikasi potensi siswa yang berisiko mengalami dropout. Model yang dikembangkan tidak hanya memberikan hasil prediksi yang akurat, tetapi juga mendukung pengambilan keputusan berbasis data untuk intervensi yang lebih tepat sasaran. Pendekatan ini memberikan kontribusi nyata dalam upaya peningkatan retensi siswa dan kualitas pendidikan secara keseluruhan.
+
+## Referensi 
+[1] https://download.garuda.kemdikbud.go.id/article.php?article=2259821&val=15965&title=Deteksi%20Dini%20Mahasiswa%20Drop%20Out%20Menggunakan%20C50
+
+[2] https://opendata.jabarprov.go.id/id/infografik/alasan-mahasiswa-drop-out-atau-putus-kuliah,-apakah-gara-gara-skripsi-susah
+
+[3] https://proceeding.unindra.ac.id/index.php/semnasristek/article/viewFile/5814/1426
