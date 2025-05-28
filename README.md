@@ -120,7 +120,15 @@ Tiga algoritma klasifikasi digunakan untuk membangun model prediksi:
    - Presisi
    - Recall
    - F1-score
-4. **Visualisasi**: perbandingan metrik antar model, confusion matrix, dll.
+4. **Visualisasi**: perbandingan akurasi model dan confusion matrix per model.
+   [1] Perbandingan Akurasi Model
+   ![perbandingan akurasi](https://github.com/user-attachments/assets/0719cb4c-c8c0-4819-8d79-9454bb48dacc)
+   [2] Confusion Matrix Gaussian Naive Bayes
+   ![cm_gnb](https://github.com/user-attachments/assets/af579626-6f04-4b4d-b48a-6c4db0b59adf)
+   [3] Confusion Matrix Logistic Regression 
+   ![cm_lr](https://github.com/user-attachments/assets/69871ae4-23d4-4173-85a1-c37250a7f527)
+   [4] Confusion Matrix Random Forest Classifier
+   ![cm_rfc](https://github.com/user-attachments/assets/0956a856-c61d-4997-9577-d222ebeba7ff)
 
 ## Evaluation
 1. Hasil Evaluasi
@@ -133,7 +141,7 @@ Tiga algoritma klasifikasi digunakan untuk membangun model prediksi:
 
 Dari hasil di atas, dapat dilihat bahwa model Random Forest Classifier memiliki akurasi yang lebih rendah baik pada data latih maupun data uji dibandingkan dengan model Gaussian Naive Bayes dan Logistic Regression. Ini menunjukkan bahwa model Random Forest Classifier lebih baik dalam memprediksi mahasiswa berisiko dropout.
 
-2. Dampak terhadap Business Understanding
+3. Dampak terhadap Business Understanding
 
 Model prediksi dropout yang dibangun membantu institusi pendidikan dalam:
 - Mengidentifikasi siswa berisiko tinggi secara dini
