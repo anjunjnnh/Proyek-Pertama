@@ -155,9 +155,6 @@ Hasil evaluasi model Logistic Regression pada data uji ditampilkan pada output b
 Evaluasi model Random Forest Classifier pada data uji menghasilkan metrik yang ditampilkan pada output berikut.
 ![Screenshot 2025-05-30 230932](https://github.com/user-attachments/assets/0dd48d0e-70bb-4407-966e-bf982120911c)
 
-
-**Insight :** <br>
-
 Pada tahap ini, tiga model klasifikasi machine learning dibangun dan dievaluasi: Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier. Setiap model dilatih pada set data pelatihan dan kemudian digunakan untuk membuat prediksi pada set data pengujian. Evaluasi dilakukan menggunakan fungsi `perform` yang menghitung dan menampilkan berbagai metrik kinerja. **Temuan utama** dari tahap ini adalah metrik kinerja individual untuk setiap model pada set data pengujian, yang ditampilkan setelah eksekusi kode masing-masing model. Metrik ini menjadi dasar perbandingan di tahap selanjutnya.
 
 # 5. Comparison of Results
