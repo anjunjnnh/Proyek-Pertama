@@ -183,7 +183,7 @@ Perbandingan akurasi ketiga model divisualisasikan menggunakan plot bar horizont
 
 Selain perbandingan akurasi, Confusion Matrix untuk setiap model juga telah divisualisasikan pada tahap evaluasi sebelumnya. Confusion Matrix memberikan detail mengenai jumlah True Positives, True Negatives, False Positives, dan False Negatives, yang sangat penting untuk memahami jenis kesalahan yang dibuat oleh setiap model.
 
-Tahap ini membandingkan kinerja ketiga model berdasarkan metrik akurasi dan visualisasi. Hasil perbandingan akurasi menunjukkan bahwa model **Random Forest Classifier** mencapai akurasi tertinggi pada set data pengujian. Plot bar horizontal secara visual menegaskan temuan ini. Meskipun akurasi adalah metrik utama untuk perbandingan di sini, metrik lain seperti Precision, Recall, dan F1-Score memberikan gambaran yang lebih lengkap tentang performa masing-masing model. Berdasarkan evaluasi ini, Random Forest menjadi model yang paling menjanjikan untuk tugas prediksi putus studi ini.
+Tahap ini membandingkan kinerja ketiga model berdasarkan metrik akurasi dan visualisasi. Hasil perbandingan akurasi menunjukkan bahwa model **Random Forest Classifier** mencapai akurasi tertinggi pada set data pengujian. Plot bar horizontal secara visual menegaskan temuan ini. Meskipun akurasi adalah metrik utama untuk perbandingan di sini, metrik lain seperti Precision, Recall, dan F1-Score memberikan gambaran yang lebih lengkap tentang performa masing-masing model. Berdasarkan evaluasi ini, Random Forest Classifier menjadi model yang paling menjanjikan untuk tugas prediksi putus studi ini.
 
 ### Dampak terhadap Business Understanding
 
