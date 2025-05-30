@@ -38,119 +38,160 @@ Proyek ini mengusulkan solusi berbasis machine learning untuk mengatasi tantanga
 
 ## Data Understanding
 
-Tahap *Data Understanding* bertujuan untuk memahami struktur, kualitas, dan karakteristik dataset yang digunakan. Proses ini dilakukan melalui analisis eksploratif data (EDA) untuk mendapatkan insight awal dan mempersiapkan strategi pemrosesan lebih lanjut.
+Tahap ini berfokus pada pemahaman mendalam terhadap dataset sebelum memulai pemrosesan dan pemodelan. Ini merupakan langkah krusial untuk memastikan data siap digunakan dan untuk mendapatkan wawasan awal.
 
-### 1. Memahami Data
+Dataset ini bersumber dari: **https://www.kaggle.com/datasets/adilshamim8/predict-students-dropout-and-academic-success/**. Dataset ini berisi informasi tentang berbagai faktor yang dapat mempengaruhi status akademik mahasiswa.
 
-#### a. Memuat Dataset  
-Dataset berkaitan dengan prediksi dropout dan kesuksesan akademik siswa.
+Setelah data berhasil dimuat, pemeriksaan awal menunjukkan dataset memiliki **4424 baris dan 37 kolom**.
 
-#### b. Kondisi Dataset  
-Sebelum analisis lebih lanjut, dilakukan pemeriksaan terhadap kondisi dataset:
-- **Nilai Hilang**: Memeriksa dan menangani kolom/baris kosong.
-- **Duplikasi**: Menghapus baris duplikat jika ditemukan.
+Pemeriksaan tipe data dan non-null count menggunakan `.info()` memberikan gambaran tentang jenis data yang terkandung dalam setiap kolom dan keberadaan nilai yang hilang.`.isnull().sum()` secara spesifik mengkonfirmasi tidak ada nilai yang hilang di dataset ini. Analisis statistik deskriptif menggunakan `.describe().T` merangkum distribusi fitur numerik seperti nilai rata-rata, standar deviasi, nilai minimum dan maksimum, serta kuartil, memberikan wawasan tentang rentang dan penyebaran data.
 
-### 2. Analisis Data Eksploratif (EDA)
+Eksplorasi Data (EDA) lebih lanjut dilakukan untuk memvisualisasikan distribusi variabel target (`target`) dan fitur-fitur penting lainnya menggunakan histogram, countplot, dan pie chart. Visualisasi ini membantu memahami sebaran status mahasiswa (Graduate, Dropout, Enrolled) dan distribusi fitur kategorikal seperti Gender. Analisis korelasi menggunakan heatmap juga dilakukan untuk mengidentifikasi hubungan linear antar fitur dan antara fitur dengan variabel target.
 
-EDA dilakukan untuk:
-- Memahami distribusi dan karakteristik fitur
-- Menilai keseimbangan kelas target
-- Menemukan hubungan antar variabel
+Beberapa fitur penting yang terdapat dalam dataset awal meliputi:
+- **Marital Status**: Status pernikahan mahasiswa.
+- **Application mode**: Mode aplikasi pendaftaran mahasiswa.
+- **Course**: Program studi yang diambil mahasiswa.
+- **Daytime/evening attendance**: Status kehadiran (siang/malam).
+- **Previous qualification**: Kualifikasi pendidikan sebelumnya.
+- **Nacionality**: Kebangsaan mahasiswa.
+- **Mother's qualification**: Kualifikasi pendidikan ibu.
+- **Father's qualification**: Kualifikasi pendidikan ayah.
+- **Mother's occupation**: Pekerjaan ibu.
+- **Father's occupation**: Pekerjaan ayah.
+- **Educational special needs**: Kebutuhan khusus pendidikan.
+- **Displaced**: Apakah mahasiswa mengungsi.
+- **Debtor**: Apakah mahasiswa memiliki utang biaya pendidikan.
+- **Tuition fees up to date**: Status pembayaran biaya kuliah.
+- **Gender**: Jenis kelamin mahasiswa.
+- **Scholarship holder**: Status penerima beasiswa.
+- **Age at enrollment**: Usia saat pendaftaran.
+- **International**: Apakah mahasiswa internasional.
+- **Curricular units 1st sem (credited)**: Unit kurikuler semester 1 yang dikreditkan.
+- **Curricular units 1st sem (enrolled)**: Unit kurikuler semester 1 yang didaftarkan.
+- **Curricular units 1st sem (evaluations)**: Evaluasi unit kurikuler semester 1.
+- **Curricular units 1st sem (approved)**: Unit kurikuler semester 1 yang disetujui/lulus.
+- **Curricular units 1st sem (grade)**: Nilai rata-rata unit kurikuler semester 1.
+- **Curricular units 1st sem (without evaluations)**: Unit kurikuler semester 1 tanpa evaluasi.
+- **Curricular units 2nd sem (credited)**: Unit kurikuler semester 2 yang dikreditkan.
+- **Curricular units 2nd sem (enrolled)**: Unit kurikuler semester 2 yang didaftarkan.
+- **Curricular units 2nd sem (evaluations)**: Evaluasi unit kurikuler semester 2.
+- **Curricular units 2nd sem (approved)**: Unit kurikuler semester 2 yang disetujui/lulus.
+- **Curricular units 2nd sem (grade)**: Nilai rata-rata unit kurikuler semester 2.
+- **Curricular units 2nd sem (without evaluations)**: Unit kurikuler semester 2 tanpa evaluasi.
+- **Unemployment rate**: Tingkat pengangguran (indikator eksternal).
+- **Inflation rate**: Tingkat inflasi (indikator eksternal).
+- **GDP**: Produk Domestik Bruto (indikator eksternal).
+- **Target**: Status akademik mahasiswa (Graduate, Dropout, Enrolled).
 
-Visualisasi yang digunakan antara lain:
-- Histogram, piechart, countplot
-- Korelasi fitur menggunakan heatmap
-
-### 3. Insight dari EDA
-
-Beberapa temuan penting dari eksplorasi awal:
-
-### Fitur Akademik Sangat Mempengaruhi Dropout
-Beberapa fitur akademik seperti:
-
-- *Curricular units 2nd sem (approved)*  
-- *Curricular units 2nd sem (grade)*  
-- *Curricular units 2nd sem (enrolled)*  
-
-memiliki korelasi negatif terhadap dropout. Hal ini menunjukkan bahwa siswa dengan performa akademik yang baik cenderung bertahan.
-
-### Faktor Sosial dan Ekonomi Juga Berperan
-Fitur-fitur berikut mengindikasikan bahwa kemampuan finansial siswa dapat memengaruhi keputusan untuk melanjutkan studi:
-
-- *Tuition fees up to date*  
-- *Scholarship holder*  
-- *Debtor*  
-
-### Fitur Demografis Kurang Relevan
-Beberapa fitur seperti *Marital Status*, *Mother's/Father's occupation*, dan *Nationality* menunjukkan korelasi rendah terhadap target dropout, sehingga perlu dipertimbangkan kembali kegunaannya dalam pemodelan.
+Temuan utama dari tahap ini adalah pemahaman mengenai struktur data, kualitas data, distribusi variabel target yang tidak seimbang (yang akan ditangani di tahap selanjutnya), serta identifikasi beberapa fitur yang menunjukkan korelasi dengan variabel target, seperti `Tuition fees up to date`, `Curricular units 1st sem (approved)`, `Curricular units 1st sem (grade)`, `Curricular units 2nd sem (approved)`, dan `Curricular units 2nd sem (grade)`. Informasi ini menjadi dasar untuk langkah-langkah persiapan data berikutnya.
 
 ## Data Preparation
 
-Persiapan data adalah langkah krusial sebelum membangun model machine learning. Tujuan tahap ini adalah membersihkan, memformat, dan menyesuaikan data agar dapat digunakan secara optimal dalam proses pelatihan dan evaluasi model.
+Tahap ini mempersiapkan data untuk pembangunan model machine learning. Proses ini meliputi langkah-langkah sebagai berikut:
 
-### Langkah-langkah Persiapan Data
-
-1. **Menangani Data yang Tidak Sesuai**
-   - Data yang memiliki nilai target tidak relevan akan dihapus. Dalam konteks proyek ini, hanya nilai `target = 0` dan `target = 2` yang valid.
-   - Dihapus semua baris yang memiliki nilai target selain 0 dan 2 (jika ada).
-   - Selanjutnya, dibuat kolom baru bernama `Dropout` dengan ketentuan:
-     - `target == 0` berarti **siswa dropout** → `Dropout = 1`
-     - `target == 2` berarti **siswa tidak dropout** → `Non-Dropout = 0`
-
-2. **Standarisasi Data**
-   - Fitur numerik dinormalisasi menggunakan **StandardScaler**, yaitu teknik transformasi yang mengubah distribusi fitur menjadi memiliki rata-rata 0 dan standar deviasi 1.
-   - Standarisasi ini penting karena banyak algoritma machine learning sensitif terhadap skala data.
-4. **Membagi Data Latih dan Uji**
-   - Dataset dibagi menjadi **data latih (training set)** dan **data uji (testing set)** menggunakan rasio 80:20.
-   - Pembagian ini dilakukan untuk mengevaluasi kinerja model terhadap data yang belum pernah dilihat saat pelatihan, sehingga hasil evaluasi lebih objektif.
-
+1.  **Encoding Variabel Target**: Sebelum pembersihan lebih lanjut, variabel target kategorikal (`target`) diubah menjadi representasi numerik menggunakan `LabelEncoder`. Langkah ini dilakukan untuk mengubah nilai-nilai seperti 'Graduate', 'Dropout', dan 'Enrolled' menjadi angka.
+2.  **Menangani Data yang Tidak Sesuai**: Data yang memiliki nilai target yang di-encode dan tidak relevan dengan masalah klasifikasi biner antara "Dropout" dan "Non-Dropout" dihapus. Dalam notebook, ini secara spesifik dilakukan dengan menghapus baris di mana nilai `target` yang sudah di-encode adalah 1 (yang sebelumnya diidentifikasi sebagai status 'Enrolled').
+3.  **Membuat Variabel Target Biner**: Setelah membersihkan data, dibuat kolom baru bernama `Dropout` sebagai variabel target biner. Nilai `target` yang sudah di-encode 0 (Dropout) dipetakan menjadi 1 (Dropout), sementara nilai `target` yang sudah di-encode 2 (Graduate) dipetakan menjadi 0 (Non-Dropout). Ini mengubah masalah menjadi klasifikasi biner yang akan digunakan untuk pemodelan.
+4.  **Standarisasi Fitur**: Fitur numerik pada dataset distandarisasi menggunakan `StandardScaler`. Teknik ini mengubah distribusi fitur menjadi memiliki rata-rata 0 dan standar deviasi 1, yang penting untuk performa algoritma machine learning yang sensitif terhadap skala data.
+5.  **Membagi Data Latih dan Uji**: Dataset kemudian dibagi menjadi set pelatihan (training set) dan set pengujian (testing set) menggunakan rasio 80:20. Pembagian ini krusial untuk mengevaluasi kinerja model secara objektif pada data yang belum pernah dilihat selama proses pelatihan.
 
 ## Modeling
 Tiga algoritma klasifikasi digunakan untuk membangun model prediksi:
-1. [Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
-2. [Gaussian Naive Bayes](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html)
-3. [Random Forest Classifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)
+1.  [Gaussian Naive Bayes](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html) <br>
+Gaussian Naive Bayes adalah algoritma klasifikasi yang didasarkan pada teorema Bayes dengan asumsi "naive" bahwa fitur-fitur adalah independen satu sama lain ketika diberikan kelas target. Model ini memperkirakan probabilitas bahwa suatu instance data termasuk dalam kelas tertentu berdasarkan probabilitas fitur-fiturnya, dengan menganggap distribusi setiap fitur dalam setiap kelas mengikuti distribusi Gaussian (normal). Keunggulannya terletak pada kesederhanaan dan efisiensinya, terutama pada dataset dengan dimensi tinggi. <br>
+Untuk model ini, digunakan **parameter default** dari pustaka scikit-learn. Parameter default ini meliputi:
+      - `priors`: None (probabilitas prior kelas dipelajari dari data).
+      - `var_smoothing`: 1e-9 (nilai kecil untuk stabilitas numerik).
 
-## Langkah-langkah Modeling
+2. [Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) <br>
+Logistic Regression adalah algoritma klasifikasi linier yang digunakan untuk memprediksi probabilitas kelas biner. Meskipun dinamakan "regresi", ini adalah model klasifikasi yang menggunakan fungsi logistik (sigmoid) untuk memetakan output linier ke dalam probabilitas antara 0 dan 1. Model ini mempelajari hubungan linier antara fitur-fitur input dan log-odds dari kelas target. Keunggulan Logistic Regression adalah interpretasi yang relatif mudah dan efisiensi komputasi. <br>
+Model Logistic Regression juga menggunakan **parameter default** scikit-learn. Beberapa parameter default kunci meliputi:
+   - `penalty`: 'l2' (penalti regularisasi L2).
+   - `C`: 1.0 (invers kekuatan regularisasi).
+   - `solver`: 'lbfgs' (algoritma untuk optimasi).
+   - `max_iter`: 100 (jumlah iterasi maksimum untuk konvergensi).
 
-1. **Persiapan Data**: pembersihan, encoding, dan pembagian data (train-test split)
-2. **Pelatihan Model**: masing-masing algoritma dilatih dengan data latih
-3. **Evaluasi Model**: menggunakan metrik klasifikasi
-   - Akurasi
-   - Presisi
-   - Recall
-   - F1-score
-4. **Visualisasi**: perbandingan akurasi model dan confusion matrix per model.
-   [1] Perbandingan Akurasi Model
-   ![perbandingan akurasi](https://github.com/user-attachments/assets/0719cb4c-c8c0-4819-8d79-9454bb48dacc)
-   [2] Confusion Matrix Gaussian Naive Bayes
-   ![cm_gnb](https://github.com/user-attachments/assets/af579626-6f04-4b4d-b48a-6c4db0b59adf)
-   [3] Confusion Matrix Logistic Regression 
-   ![cm_lr](https://github.com/user-attachments/assets/69871ae4-23d4-4173-85a1-c37250a7f527)
-   [4] Confusion Matrix Random Forest Classifier
-   ![cm_rfc](https://github.com/user-attachments/assets/0956a856-c61d-4997-9577-d222ebeba7ff)
+3. [Random Forest Classifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) <br>
+Random Forest Classifier adalah algoritma ensemble yang membangun banyak pohon keputusan (decision trees) selama pelatihan dan menghasilkan prediksi kelas yang merupakan mode (kelas yang paling sering muncul) dari prediksi pohon-pohon individu. Setiap pohon dalam hutan dilatih pada subset data pelatihan yang diambil secara acak (bagging), dan pada setiap node pemisahan, hanya subset fitur yang dipilih secara acak yang dipertimbangkan (feature randomness). Kombinasi dari banyak pohon yang dilatih secara independen ini membantu mengurangi overfitting dan meningkatkan robustnes serta akurasi model. <br>
+Untuk Random Forest Classifier, model dikonfigurasi dengan parameter spesifik:
+   - `n_estimators`: **500**. Ini menentukan jumlah pohon yang akan dibangun dalam hutan. Penggunaan 500 pohon umumnya menghasilkan model yang lebih robust.
+   - `criterion`: **'entropy'**. Ini adalah fungsi untuk mengukur kualitas pemisahan pada setiap node pohon. 'Entropy' mengukur ketidakmurnian informasi atau pengacakan.
 
-## Evaluation
-1. Hasil Evaluasi
+Parameter lain yang tidak disebutkan secara eksplisit menggunakan nilai **default** dari scikit-learn, seperti `max_depth=None`, `min_samples_split=2`, `min_samples_leaf=1`, `bootstrap=True`, dan `random_state=None`.
 
-| Model                    | Akurasi | Precision | Recall | F1-Score |
-|--------------------------|---------|-----------|--------|----------|
-| Gaussian Naive Bayes     | 0.85    | 0.85      | 0.85   | 0.85     |
-| Logistic Regression      | 0.91    | 0.91      | 0.91   | 0.91     |
-| Random Forest Classifier | 0.92    | 0.92      | 0.92   | 0.92     |
+# 4. Model Development dan Evaluation
 
-Dari hasil di atas, dapat dilihat bahwa model Random Forest Classifier memiliki akurasi yang lebih rendah baik pada data latih maupun data uji dibandingkan dengan model Gaussian Naive Bayes dan Logistic Regression. Ini menunjukkan bahwa model Random Forest Classifier lebih baik dalam memprediksi mahasiswa berisiko dropout.
+Pada tahap ini, dilakukan pembangunan dan evaluasi terhadap tiga model klasifikasi machine learning yang berbeda: Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier. Tujuan utama adalah untuk memprediksi status putus studi mahasiswa berdasarkan data yang telah dipersiapkan.
 
-3. Dampak terhadap Business Understanding
+Langkah-langkah utama yang dilakukan dalam tahap ini meliputi:
+1.  **Pemilihan Model**: Memilih algoritma klasifikasi yang akan digunakan. Dalam proyek ini, dipilih Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier karena karakteristik dan efisiensi komputasi mereka.
+2.  **Pelatihan Model**: Masing-masing model dilatih menggunakan data pelatihan (x_train, y_train) yang telah dipisahkan di tahap persiapan data. Proses pelatihan ini memungkinkan model untuk mempelajari pola hubungan antara fitur-fitur input dan variabel target ('Dropout').
+3.  **Prediksi pada Data Uji**: Setelah dilatih, masing-masing model digunakan untuk membuat prediksi terhadap data pengujian (x_test). Hasil prediksi ini akan dibandingkan dengan nilai target sebenarnya (y_test) untuk mengevaluasi kinerja model.
+4.  **Evaluasi Kinerja Model**: Kinerja setiap model dievaluasi menggunakan berbagai metrik klasifikasi standar, yang dikumpulkan dalam fungsi `perform`. Metrik ini meliputi:
+    -   **Akurasi (Accuracy)**: Proporsi prediksi yang benar dari total prediksi.
+    -   **Presisi (Precision)**: Kemampuan model untuk tidak mengklasifikasikan instance negatif sebagai positif.
+    -   **Recall (Sensitivity)**: Kemampuan model untuk menemukan semua instance positif.
+    -   **F1-Score**: Rata-rata harmonis dari Presisi dan Recall, memberikan keseimbangan antara keduanya.
+    -   **Confusion Matrix**: Tabel yang menunjukkan jumlah prediksi yang benar dan salah untuk setiap kelas.
+    -   **Classification Report**: Ringkasan tekstual dari metrik Presisi, Recall, F1-Score, dan Support untuk setiap kelas.
 
-Model prediksi dropout yang dibangun membantu institusi pendidikan dalam:
-- Mengidentifikasi siswa berisiko tinggi secara dini
-- Merancang intervensi akademik atau finansial yang tepat
-- Meningkatkan retensi siswa dan efisiensi operasional
-Solusi ini menjawab kebutuhan nyata dalam mengurangi angka dropout dengan pendekatan berbasis data.
+Berikut adalah detail evaluasi untuk setiap model:
 
-## Kesimpulan 
-Secara keseluruhan, proyek ini berhasil membangun model prediktif yang efektif dalam mengidentifikasi potensi siswa yang berisiko mengalami dropout. Model yang dikembangkan tidak hanya memberikan hasil prediksi yang akurat, tetapi juga mendukung pengambilan keputusan berbasis data untuk intervensi yang lebih tepat sasaran. Pendekatan ini memberikan kontribusi nyata dalam upaya peningkatan retensi siswa dan kualitas pendidikan secara keseluruhan.
+### a. Gaussian Naive Bayes
+
+Setelah pelatihan dan prediksi, evaluasi model Gaussian Naive Bayes pada data uji menghasilkan metrik yang ditunjukkan pada output berikut :
+![Screenshot 2025-05-30 230740](https://github.com/user-attachments/assets/9f56b069-4ef4-4fa1-8391-f6bf22a58f32)
+
+
+### b. Logistic Regression
+
+Hasil evaluasi model Logistic Regression pada data uji ditampilkan pada output berikut.
+![Screenshot 2025-05-30 230348](https://github.com/user-attachments/assets/f3d3eb62-0a13-4e1d-9fc6-23672faf2c58)
+
+
+### c. Random Forest Classifier
+
+Evaluasi model Random Forest Classifier pada data uji menghasilkan metrik yang ditampilkan pada output berikut.
+![Screenshot 2025-05-30 230932](https://github.com/user-attachments/assets/0dd48d0e-70bb-4407-966e-bf982120911c)
+
+
+**Insight :** <br>
+
+Pada tahap ini, tiga model klasifikasi machine learning dibangun dan dievaluasi: Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier. Setiap model dilatih pada set data pelatihan dan kemudian digunakan untuk membuat prediksi pada set data pengujian. Evaluasi dilakukan menggunakan fungsi `perform` yang menghitung dan menampilkan berbagai metrik kinerja. **Temuan utama** dari tahap ini adalah metrik kinerja individual untuk setiap model pada set data pengujian, yang ditampilkan setelah eksekusi kode masing-masing model. Metrik ini menjadi dasar perbandingan di tahap selanjutnya.
+
+# 5. Comparison of Results
+
+Tahap ini membandingkan kinerja dari ketiga model yang telah dilatih dan dievaluasi, dengan fokus utama pada metrik Akurasi sebagai indikator utama kinerja prediksi.
+
+### Hasil Perbandingan Akurasi
+
+Hasil Akurasi dari setiap model yang dihitung pada data uji dirangkum sebagai berikut:
+
+| Model                    | Akurasi |
+|--------------------------|---------|
+| Gaussian Naive Bayes     | ~0.846  |
+| Logistic Regression      | ~0.910  |
+| Random Forest Classifier | ~0.923  |
+
+*Catatan: Nilai akurasi diambil dari output eksekusi kode.*
+
+### Visualisasi Perbandingan
+
+Perbandingan akurasi ketiga model divisualisasikan menggunakan plot bar horizontal. Visualisasi ini memudahkan identifikasi model dengan kinerja akurasi tertinggi.
+![download](https://github.com/user-attachments/assets/8bd571b6-2bb2-4c27-9a24-42fd5ec9a28c)
+
+Selain perbandingan akurasi, Confusion Matrix untuk setiap model juga telah divisualisasikan pada tahap evaluasi sebelumnya. Confusion Matrix memberikan detail mengenai jumlah True Positives, True Negatives, False Positives, dan False Negatives, yang sangat penting untuk memahami jenis kesalahan yang dibuat oleh setiap model.
+
+Tahap ini membandingkan kinerja ketiga model berdasarkan metrik akurasi dan visualisasi. Hasil perbandingan akurasi menunjukkan bahwa model **Random Forest Classifier** mencapai akurasi tertinggi pada set data pengujian. Plot bar horizontal secara visual menegaskan temuan ini. Meskipun akurasi adalah metrik utama untuk perbandingan di sini, metrik lain seperti Precision, Recall, dan F1-Score memberikan gambaran yang lebih lengkap tentang performa masing-masing model. Berdasarkan evaluasi ini, Random Forest menjadi model yang paling menjanjikan untuk tugas prediksi putus studi ini.
+
+### Dampak terhadap Business Understanding
+
+Model prediksi dropout yang dibangun memiliki dampak signifikan bagi institusi pendidikan:
+-   **Identifikasi Dini**: Memungkinkan identifikasi mahasiswa berisiko tinggi putus studi pada tahap awal.
+-   **Intervensi Tepat Sasaran**: Informasi ini memungkinkan institusi untuk merancang dan memberikan intervensi yang lebih tepat waktu dan sesuai, baik itu dukungan akademik, finansial, atau konseling.
+-   **Peningkatan Retensi Mahasiswa**: Dengan mengidentifikasi dan mendukung mahasiswa berisiko, institusi dapat meningkatkan tingkat retensi mahasiswa.
+-   **Peningkatan Efisiensi Sumber Daya**: Intervensi yang ditargetkan lebih efisien dalam penggunaan sumber daya dibandingkan pendekatan umum.
 
 ## Referensi 
 [1] https://download.garuda.kemdikbud.go.id/article.php?article=2259821&val=15965&title=Deteksi%20Dini%20Mahasiswa%20Drop%20Out%20Menggunakan%20C50
