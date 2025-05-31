@@ -31,7 +31,11 @@ Berdasarkan latar belakang di atas, berikut ini merupakan rincian masalah yang d
 -  Bagaimana metrik evaluasi model (seperti accuracy, precision, recall, F1-score, dan confusion matrix) menunjukkan kinerja masing-masing model dalam mengidentifikasi mahasiswa yang berisiko dropout dan yang tidak berisiko dropout?
 
 ### Goals
-Tujuan utama dari proyek ini adalah untuk mengembangkan, melatih, dan mengevaluasi beberapa model machine learning yang mampu memprediksi status dropout mahasiswa secara akurat. Proyek ini bertujuan untuk mengidentifikasi algoritma machine learning yang paling efektif dalam memprediksi dropout berdasarkan data yang tersedia, serta memberikan wawasan tentang faktor-faktor kunci yang berkontribusi terhadap risiko dropout.
+- Untuk membandingkan kinerja beberapa algoritma machine learning (Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier) dalam memprediksi dropout mahasiswa dan mengidentifikasi algoritma yang paling efektif berdasarkan metrik evaluasi.
+  
+- Untuk menganalisis korelasi antara fitur-fitur dataset dengan status dropout mahasiswa dan mengidentifikasi fitur-fitur kunci yang paling berkontribusi terhadap risiko dropout.
+  
+- Untuk mengevaluasi kinerja setiap model menggunakan metrik seperti accuracy, precision, recall, F1-score, dan confusion matrix guna memahami kemampuan model dalam mengidentifikasi mahasiswa berisiko dan tidak berisiko dropout.
 
 ### Solution Statement 
 Proyek ini mengusulkan solusi berbasis machine learning untuk mengatasi tantangan identifikasi dropout mahasiswa. Solusi ini melibatkan pembangunan model klasifikasi menggunakan algoritma seperti Gaussian Naive Bayes, Logistic Regression, dan Random Forest Classifier pada dataset historis mahasiswa. Data akan melalui proses preprocessing termasuk encoding dan standarisasi. Kinerja model akan dievaluasi secara komprehensif menggunakan metrik standar seperti accuracy, precision, recall, dan F1-score, serta visualisasi confusion matrix. Hasil evaluasi ini akan digunakan untuk membandingkan kinerja model dan mengidentifikasi model terbaik untuk memprediksi dropout mahasiswa. Solusi ini bertujuan untuk memberikan institusi pendidikan alat prediktif yang berbasis data untuk mengidentifikasi mahasiswa berisiko dropout secara proaktif, memungkinkan intervensi yang tepat waktu dan meningkatkan retensi mahasiswa.
@@ -51,14 +55,17 @@ Eksplorasi Data (EDA) lebih lanjut dilakukan untuk memvisualisasikan distribusi 
 Beberapa fitur penting yang terdapat dalam dataset awal meliputi:
 - **Marital Status**: Status pernikahan mahasiswa.
 - **Application mode**: Mode aplikasi pendaftaran mahasiswa.
+- **Application order**: Urutan pendaftaran atau aplikasi mahasiswa (misalnya, pendaftaran pertama, kedua, dst.).
 - **Course**: Program studi yang diambil mahasiswa.
 - **Daytime/evening attendance**: Status kehadiran (siang/malam).
 - **Previous qualification**: Kualifikasi pendidikan sebelumnya.
+- **Previous qualification (grade)**: Nilai atau rata-rata nilai dari kualifikasi pendidikan sebelumnya yang dimiliki mahasiswa.
 - **Nacionality**: Kebangsaan mahasiswa.
 - **Mother's qualification**: Kualifikasi pendidikan ibu.
 - **Father's qualification**: Kualifikasi pendidikan ayah.
 - **Mother's occupation**: Pekerjaan ibu.
 - **Father's occupation**: Pekerjaan ayah.
+- **Admission grade**: Nilai atau skor yang diperoleh mahasiswa dalam proses penerimaan atau seleksi masuk ke institusi.
 - **Educational special needs**: Kebutuhan khusus pendidikan.
 - **Displaced**: Apakah mahasiswa mengungsi.
 - **Debtor**: Apakah mahasiswa memiliki utang biaya pendidikan.
